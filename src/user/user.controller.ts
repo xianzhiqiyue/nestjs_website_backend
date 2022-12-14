@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags }
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserPipe } from './user.pipe';
 import * as svgCaptcha from 'svg-captcha'
 
 @Controller({
@@ -17,7 +18,7 @@ export class UserController {
   @Post()
   @ApiOperation({summary: '新增用户'})
   @HttpCode(204)
-  create(@Body() createUserDto: CreateUserDto,@Session() session) {
+  create(@Body('add',UserPipe) createUserDto: CreateUserDto,@Session() session) {
     console.log(session,createUserDto,'session')
     return this.userService.create(createUserDto);
   }
