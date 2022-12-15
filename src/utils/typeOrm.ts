@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm"
-import { typeormConfig } from "./baseConfig"
+import { typeormConfig } from "../config"
 
 /**
  * 启用数据库

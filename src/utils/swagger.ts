@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import {swaggerConfig} from './baseConfig'
+import {swaggerConfig,port} from '../config'
 
 
 /**
@@ -9,11 +9,17 @@ import {swaggerConfig} from './baseConfig'
  * @param app 
  */
  export function swaggerSetup(app:INestApplication) {
-  const {TITLE,DESCRIPTION,VERSION,URL} = swaggerConfig
+  const {title,description,version,URL,persistAuthorization} = swaggerConfig
   
-  const options = new DocumentBuilder().setTitle(TITLE).setDescription(DESCRIPTION).setVersion(VERSION).build()
+  const options = new DocumentBuilder().setTitle(title).setDescription(description).setVersion(version).addBearerAuth().build()
 
   const document = SwaggerModule.createDocument(app,options)
 
-  SwaggerModule.setup(URL,app,document)
+  SwaggerModule.setup(URL, app, document ,{ swaggerOptions: {
+    persistAuthorization,
+  }})
+
+  console.info(
+    `Documentation: http://localhost:${port}/${URL}`,
+  );
 }

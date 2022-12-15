@@ -1,6 +1,6 @@
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Request,Response,NextFunction } from 'express';
-import { whitelistConfig } from './baseConfig'
+import { whitelistConfig } from '../config'
 
 function whitelistMiddleware(req: Request, res: Response, next:NextFunction) {
   if(whitelistConfig.includes(req.originalUrl)) next();

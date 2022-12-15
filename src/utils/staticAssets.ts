@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { staticAssetsConfig } from './baseConfig'
+import { staticAssetsConfig } from '../config'
 
 /**
  * 打开版本控制

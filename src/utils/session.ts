@@ -1,6 +1,6 @@
 import { NestExpressApplication } from '@nestjs/platform-express'
 import * as session from 'express-session'
-import {sessionConfig} from './baseConfig'
+import {sessionConfig} from '../config'
 
 /**
  * 启用session

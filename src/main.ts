@@ -7,7 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   enableVersioning(app)
-
   sessionSetup(app)
   swaggerSetup(app)
   loggerSetup(app)
@@ -19,6 +18,8 @@ async function bootstrap() {
   await typeOrmSetup()
 
   await app.listen(port);
+
+  console.info(`server running on ${await app.getUrl()}`);
 }
 
 bootstrap();
