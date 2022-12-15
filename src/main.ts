@@ -1,39 +1,24 @@
 import { NestFactory } from '@nestjs/core';
-import { VersioningType,ValidationPipe } from '@nestjs/common';
-import * as session from 'express-session'
 import { AppModule } from './app.module';
-import { swaggerSetup } from './utils/swaggerSetup'
-import * as cors from 'cors'
-import { Request,Response,NextFunction } from 'express';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
-
-function Middleware(req: Request, res: Response, next:NextFunction) {
-  next();
-}
+import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, loggerSetup, whitelistSetup, validationSetup, staticAssetsSetup, corsSetup } from './utils'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  
-  app.enableVersioning({ //版本控制
-    type: VersioningType.URI
-  })
 
-  const maxAge = 36 * 60 * 60 * 1000
-  app.use(session({secret:'yue',rolling:true,cookie:{maxAge}}))
+  enableVersioning(app)
 
-  app.use(cors())
-  app.use(Middleware)
-
-  app.useGlobalPipes(new ValidationPipe())
-
+  sessionSetup(app)
   swaggerSetup(app)
-  
-  app.useStaticAssets(join(__dirname,'images'),{
-    prefix:'/file'
-  })
-  await app.listen(3000);
-}
+  loggerSetup(app)
+  whitelistSetup(app)
+  validationSetup(app)
+  staticAssetsSetup(app)
+  corsSetup(app)
 
+  await typeOrmSetup()
+
+  await app.listen(port);
+}
 
 bootstrap();

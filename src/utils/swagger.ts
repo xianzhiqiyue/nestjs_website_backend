@@ -1,10 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import {swaggerConfig} from './baseConfig'
 
-const TITLE = '后端Swagger'
-const DESCRIPTION = 'Nestjs搭建的Node后端程序'
-const VERSION = '1'
-const URL = '/api-docs'
 
 /**
  * 启动api 接口文档
@@ -12,6 +9,8 @@ const URL = '/api-docs'
  * @param app 
  */
  export function swaggerSetup(app:INestApplication) {
+  const {TITLE,DESCRIPTION,VERSION,URL} = swaggerConfig
+  
   const options = new DocumentBuilder().setTitle(TITLE).setDescription(DESCRIPTION).setVersion(VERSION).build()
 
   const document = SwaggerModule.createDocument(app,options)

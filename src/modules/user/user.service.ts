@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import * as svgCaptcha from 'svg-captcha'
 
 @Injectable()
 export class UserService {
@@ -10,16 +9,11 @@ export class UserService {
   }
 
   findAll() {
-    return {
-      code:200
-    };
+    return `This action returns all user`;
   }
 
   findOne(id: number) {
-    return {
-      id,
-      code:200
-    };
+    return `This action returns a #${id} user`;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -28,15 +22,5 @@ export class UserService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
-  }
-
-  createCode(): svgCaptcha.CaptchaObj {
-    return svgCaptcha.create({
-      size:4,
-      fontSize:50,
-      width:100,
-      height:35,
-      background:'#cc9966'
-    })
   }
 }
