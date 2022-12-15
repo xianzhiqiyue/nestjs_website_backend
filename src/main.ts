@@ -6,7 +6,7 @@ import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, logge
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  enableVersioning(app)
+  enableVersioning(app) 
   sessionSetup(app)
   swaggerSetup(app)
   loggerSetup(app)

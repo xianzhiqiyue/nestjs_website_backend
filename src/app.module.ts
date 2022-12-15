@@ -1,9 +1,10 @@
-import { Module,CacheModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UserModule,UploadModule } from './modules';
-import { envConfigCreator } from './utils/envConfig';
+import { envConfigCreator,cacheManagerCreator } from './utils';
+
 
 
 @Module({
-  imports: [UserModule,UploadModule,envConfigCreator(),CacheModule.register()]
+  imports: [UserModule,UploadModule,envConfigCreator(),cacheManagerCreator()]
 })
 export class AppModule {}
