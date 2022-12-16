@@ -1,3 +1,4 @@
+import { Role } from 'src/utils';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
@@ -18,7 +19,7 @@ export class User {
   email?: string
 
   @Column()
-  role: string;
+  role: Role;
 
   // @CreateDateColumn()
   // createdDate: Date;
