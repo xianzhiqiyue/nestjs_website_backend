@@ -12,19 +12,19 @@ export class User {
   password: string;
 
   @Column({ length: 20 })
-  phone: string
+  phone?: string
 
   @Column({ length: 50 })
-  email: string
+  email?: string
 
-  @Column("int")
-  role: number;
+  @Column()
+  role: string;
 
-  @CreateDateColumn()
-  createdDate: Date;
+  // @CreateDateColumn()
+  // createdDate: Date;
 
-  @UpdateDateColumn()
-  updatedDate: Date;
+  // @UpdateDateColumn()
+  // updatedDate: Date;
 
   @Column({ default: true })
   isActive: boolean;

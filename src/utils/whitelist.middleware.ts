@@ -3,7 +3,7 @@ import { Request,Response,NextFunction } from 'express';
 import { whitelistConfig } from '../config'
 
 function whitelistMiddleware(req: Request, res: Response, next:NextFunction) {
-  if(whitelistConfig.includes(req.originalUrl)) next();
+ /*  if(whitelistConfig.includes(req.originalUrl)) */ next();
 }
 /**
  * 启用白名单
