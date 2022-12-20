@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, Length,IsNumber } from 'class-validator'
+import { Role } from "src/utils";
 
 
 export class CreateUserDto {
@@ -35,8 +36,8 @@ export class CreateUserDto {
   email?: string
 
   @ApiProperty({
-    description: `权限,0:admin | 1:normal`,
-    example: '0',
+    description: `权限,Role.Admin | Role.normal`,
+    example: 'Role.Admin',
   })
-  role: number;
+  role: Role;
 }

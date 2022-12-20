@@ -1,20 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Role, Roles } from 'src/utils';
+import { Roles,Role } from 'src/utils';
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from '../auth/auth.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
-  @UseGuards(LocalAuthGuard)
-  @Post('login')
-  async login(@Req() req) {
-    return req.user;
-  }
 
   @Post()
   @Roles(Role.Admin)

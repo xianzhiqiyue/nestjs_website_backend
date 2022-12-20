@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Role } from 'src/utils';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -13,21 +14,21 @@ export class UserService {
         id: 1,
         username: 'john',
         password: 'changeme',
-        role: 'admin',
+        role: Role.Admin,
         isActive: true,
       },
       {
         id: 2,
         username: 'chris',
         password: 'secret',
-        role: 'admin',
+        role: Role.Admin,
         isActive: true,
       },
       {
         id: 3,
         username: 'maria',
         password: 'guess',
-        role: 'admin',
+        role: Role.Admin,
         isActive: true,
       },
     ];
