@@ -20,6 +20,6 @@ import {swaggerConfig,port} from '../config'
   }})
 
   console.info(
-    `Documentation: http://localhost:${port}/${URL}`,
+    `Documentation: http://localhost:${port + URL}`,
   );
 }

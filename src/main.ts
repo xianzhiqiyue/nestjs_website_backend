@@ -15,7 +15,7 @@ async function bootstrap() {
   staticAssetsSetup(app)
   corsSetup(app)
   // roleGuardGlobalSetup(app)
-  authGuardGlobalSetup(app)
+  // authGuardGlobalSetup(app)
 
   await typeOrmSetup()
 
