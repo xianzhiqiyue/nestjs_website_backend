@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, loggerSetup, whitelistSetup, validationSetup, staticAssetsSetup, roleGuardGlobalSetup, authGuardGlobalSetup, setGlobalPrefix, enableCors, getEnv, envInfoPrint } from './utils'
+import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, loggerSetup, whitelistSetup, validationSetup, staticAssetsSetup, roleGuardGlobalSetup, authGuardGlobalSetup, setGlobalPrefix, enableCors, getEnv, envInfoPrint } from './common'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

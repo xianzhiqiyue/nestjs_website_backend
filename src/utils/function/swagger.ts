@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import { swaggerConfig, port } from '../config'
+import { swaggerConfig, port } from '@/config'
 
 
 /**

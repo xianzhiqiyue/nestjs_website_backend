@@ -1,5 +1,5 @@
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { getLogConfig } from '../config'
+import { getLogConfig } from '@/config'
 
 /**
  * 启用session

@@ -1,5 +1,5 @@
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { prefix } from '../config'
+import { prefix } from '@/config'
 
 /**
  * 设置api全局前缀
