@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import {swaggerConfig,port} from '../config'
+import { swaggerConfig, port } from '../config'
 
 
 /**
@@ -8,18 +8,17 @@ import {swaggerConfig,port} from '../config'
  * apiFox 导入地址为 /URL + '-json'
  * @param app 
  */
- export function swaggerSetup(app:INestApplication) {
-  const {title,description,version,URL,persistAuthorization} = swaggerConfig
-  
+export function swaggerSetup(app: INestApplication) {
+  const { title, description, version, URL, persistAuthorization } = swaggerConfig
+
   const options = new DocumentBuilder().setTitle(title).setDescription(description).setVersion(version).addBearerAuth().build()
 
-  const document = SwaggerModule.createDocument(app,options)
+  const document = SwaggerModule.createDocument(app, options)
 
-  SwaggerModule.setup(URL, app, document ,{ swaggerOptions: {
-    persistAuthorization,
-  }})
-
-  console.info(
-    `Documentation: http://localhost:${port}/${URL}`,
-  );
+  SwaggerModule.setup(URL, app, document, {
+    swaggerOptions: {
+      persistAuthorization,
+    }
+  })
+  return URL
 }
