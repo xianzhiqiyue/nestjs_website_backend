@@ -1,3 +1,7 @@
 import { LogLevel } from '@nestjs/common';
 
-export const logConfig:LogLevel[] =  ['log', 'error', 'warn'] //log , error , warn , debug 和 verbose
+//log , error , warn , debug 和 verbose
+const logConfig: LogLevel[] = ['error', 'warn']
+const logConfigDev: LogLevel[] = ['log', 'error', 'warn']
+
+export const getLogConfig = (isDev: boolean): LogLevel[] => isDev ? logConfigDev : logConfig

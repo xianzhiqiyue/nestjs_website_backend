@@ -1,27 +1,28 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, loggerSetup, whitelistSetup, validationSetup, staticAssetsSetup, corsSetup,roleGuardGlobalSetup,authGuardGlobalSetup } from './utils'
+import { swaggerSetup, enableVersioning, sessionSetup, typeOrmSetup, port, loggerSetup, whitelistSetup, validationSetup, staticAssetsSetup, roleGuardGlobalSetup, authGuardGlobalSetup, setGlobalPrefix, enableCors, getEnv, envInfoPrint } from './common'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
-  enableVersioning(app) 
+  const isDev = getEnv()
+  enableVersioning(app)
+  const docURL = swaggerSetup(app)
   sessionSetup(app)
-  swaggerSetup(app)
-  loggerSetup(app)
+  setGlobalPrefix(app)
+  loggerSetup(app, isDev)
   whitelistSetup(app)
   validationSetup(app)
   staticAssetsSetup(app)
-  corsSetup(app)
+  enableCors(app)
+  authGuardGlobalSetup(app)
   // roleGuardGlobalSetup(app)
-  // authGuardGlobalSetup(app)
 
-  await typeOrmSetup()
+  await typeOrmSetup(isDev)
 
-  await app.listen(port);
+  await app.listen(port)
 
-  console.info(`server running on ${await app.getUrl()}`);
+  envInfoPrint(app, { isDev, docURL })
 }
 
 bootstrap();
