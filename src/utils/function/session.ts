@@ -8,5 +8,5 @@ import { sessionConfig } from '@/config'
  */
 export function sessionSetup(app: NestExpressApplication) {
   const { maxAge, secret, rolling } = sessionConfig
-  app.use(session({ secret, rolling, cookie: { maxAge } }))
+  app.use(session({ secret, rolling, resave: false, saveUninitialized:false, cookie: { maxAge } }))
 }

@@ -16,7 +16,7 @@ export const typeormConfig: DataSourceOptions = {
 }
 export const typeormConfigDev: DataSourceOptions = {
   type: "mysql",
-  host: "localhost",
+  host: "http://42.193.106.244",
   port: 3306,
   username: "root",
   password: "123456",

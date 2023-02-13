@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
-import { CODE, codeMsg } from '../enums/code.enum'
+import { CODE, codeMsg } from '@/config'
 import { sign, verify, decode } from 'jsonwebtoken'
 import { compare, genSalt, hash } from 'bcryptjs'
 import * as crypto from 'crypto'

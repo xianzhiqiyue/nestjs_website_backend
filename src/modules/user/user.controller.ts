@@ -22,7 +22,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
+  @Get(':username')
   @Roles(Role.Admin,Role.User)
   findOne(@Param('username') username: string) {
     return this.userService.findOne(username);
