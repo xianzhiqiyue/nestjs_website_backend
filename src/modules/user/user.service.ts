@@ -1,5 +1,5 @@
 import { Get, HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Role } from 'src/utils';
+import { Role } from '@/utils';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -38,13 +38,13 @@ export class UserService {
     return 'This action adds a new user';
   }
 
- 
+
   async findAll() {
     // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 
-  findOne(name: string):User {
-    return this.users.find(({username})=> username === name);
+  findOne(name: string): User {
+    return this.users.find(({ username }) => username === name);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

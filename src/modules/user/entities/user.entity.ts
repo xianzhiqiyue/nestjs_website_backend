@@ -1,4 +1,4 @@
-import {Role} from 'src/utils';
+import { Role } from '@/utils';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()

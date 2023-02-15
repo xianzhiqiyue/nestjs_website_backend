@@ -20,7 +20,7 @@ export const typeormConfigDev: DataSourceOptions = {
   port: 3306,
   username: "root",
   password: "123456",
-  database: "nestjs_site_backend_dev",
+  database: "site_backend_dev",
 }
 
 

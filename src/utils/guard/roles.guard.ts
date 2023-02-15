@@ -2,13 +2,13 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { User } from 'src/modules/user/entities/user.entity';
-import { ROLES_KEY,Role } from './roles.decorator';
+import { ROLES_KEY, Role } from '../decorator/roles.decorator';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  constructor(private reflector: Reflector) { }
 
-canActivate(context: ExecutionContext): boolean {
+  canActivate(context: ExecutionContext): boolean {
     const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
       context.getHandler(),
       context.getClass(),
@@ -16,7 +16,7 @@ canActivate(context: ExecutionContext): boolean {
     if (!requiredRoles) {
       return true;
     }
-    const { user }:{user:User} = context.switchToHttp().getRequest();
+    const { user }: { user: User } = context.switchToHttp().getRequest();
     return requiredRoles.some((role) => user.role === role);
   }
 }
@@ -26,7 +26,7 @@ canActivate(context: ExecutionContext): boolean {
  * 全局使用权限守卫
  * @param app 
  */
-export function roleGuardGlobalSetup(app:NestExpressApplication) {
+export function roleGuardGlobalSetup(app: NestExpressApplication) {
   app.useGlobalGuards(new RolesGuard(new Reflector()))
 }
 
